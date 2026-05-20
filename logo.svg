@@ -1,0 +1,10 @@
+<svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="48" y2="48">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <path d="M8 40L24 8L40 40H32L28 30H20L16 40H8ZM22 24H26L24 19.5L22 24Z" fill="url(#g1)"/>
+  <text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="700" fill="#E2E8F0">Ardot</text>
+</svg>

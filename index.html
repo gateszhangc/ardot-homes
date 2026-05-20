@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ardot — AI-Powered Design Tool for Modern Creatives</title>
+  <meta name="description" content="Ardot is an AI-driven intelligent design tool for designers and product teams. Bring your ideas to life with text-to-UI, image-to-design, vector editing, dynamic layout systems, and seamless design-to-development handoff."/>
+  <meta name="keywords" content="Ardot, AI design tool, intelligent design tool, text to UI, AI-powered design, vector editing, dynamic layout, design system, design to development, collaborative design, Tencent design"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:title" content="Ardot — AI-Powered Design Tool for Modern Creatives"/>
+  <meta property="og:description" content="Ardot is an AI-driven intelligent design tool for designers and product teams. Bring your ideas to life with text-to-UI, image-to-design, vector editing, dynamic layout systems, and seamless design-to-development handoff."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://ardot.design/"/>
+  <meta property="og:image" content="/apple-touch-icon.svg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Ardot — AI-Powered Design Tool for Modern Creatives"/>
+  <meta name="twitter:description" content="Ardot is an AI-driven intelligent design tool for designers and product teams. Bring your ideas to life with text-to-UI, image-to-design, vector editing, dynamic layout systems, and seamless design-to-development handoff."/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e16;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2332;
+      --border: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent-1: #4F46E5;
+      --accent-2: #06B6D4;
+      --accent-glow: rgba(79,70,229,0.12);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    ::selection { background: rgba(79,70,229,0.35); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    img,svg { display: block; max-width: 100%; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width:640px){ .container { padding: 0 16px; } }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(10,14,22,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo-link {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary);
+      padding: 6px 14px; border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
+    @media (max-width:640px){ .nav-links a { padding: 6px 10px; font-size: 13px; } }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 100px 0 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: 50%;
+      width: 800px; height: 800px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(79,70,229,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(79,70,229,0.3);
+      background: rgba(79,70,229,0.08);
+      color: #818cf8;
+      font-size: 13px; font-weight: 500;
+      padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: 60px; font-weight: 750; line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 780px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, #f1f5f9 40%, #818cf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 18px; color: var(--text-secondary);
+      max-width: 600px; margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 15px; font-weight: 600;
+      border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #fff;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(79,70,229,0.3);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 15px; font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent-1); background: var(--bg-card-hover); }
+    @media (max-width:768px){
+      .hero { padding: 64px 0 56px; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 16px; }
+    }
+
+    /* Section base */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: var(--accent-2);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 36px; font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 16px; color: var(--text-secondary);
+      max-width: 560px; line-height: 1.7;
+    }
+
+    /* Grid layouts */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    @media (max-width:1024px){ .grid-4 { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:768px){ .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+
+    /* Split layout (hero-type sections) */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width:768px){ .split { grid-template-columns: 1fr; gap: 32px; } }
+    .split-right { display: flex; justify-content: center; }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: rgba(79,70,229,0.3);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      font-size: 18px; font-weight: 700;
+    }
+    .card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .icon-indigo { background: rgba(79,70,229,0.15); color: #818cf8; }
+    .icon-cyan { background: rgba(6,182,212,0.15); color: #67e8f9; }
+    .icon-purple { background: rgba(168,85,247,0.15); color: #c084fc; }
+    .icon-green { background: rgba(34,197,94,0.15); color: #86efac; }
+
+    /* Step list */
+    .step-list { counter-reset: step; display: flex; flex-direction: column; gap: 24px; }
+    .step-item {
+      display: grid; grid-template-columns: 32px 1fr;
+      gap: 16px; align-items: start;
+    }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 100px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--accent-2);
+    }
+    .step-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .step-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Feature highlight */
+    .feature-highlight {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .feature-highlight h3 {
+      font-size: 18px; font-weight: 600;
+    }
+    .feature-highlight p {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-size: 15px; font-weight: 600; margin-bottom: 8px;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q::after {
+      content: '+'; font-size: 18px; color: var(--text-secondary);
+      transition: transform .2s;
+    }
+    .faq-a {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+    }
+
+    /* Stats / badges row */
+    .info-row {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+    }
+    .info-item {
+      padding: 16px; border-radius: var(--radius);
+      background: var(--bg-card); border: 1px solid var(--border);
+      text-align: center;
+    }
+    .info-item .value { font-size: 24px; font-weight: 700; color: var(--accent-2); }
+    .info-item .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+    @media (max-width:768px){ .info-row { grid-template-columns: repeat(2,1fr); } }
+
+    /* Source list */
+    .source-list { display: flex; flex-direction: column; gap: 16px; }
+    .source-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: border-color .2s;
+    }
+    .source-item:hover { border-color: rgba(79,70,229,0.3); }
+    .source-item .left { display: flex; flex-direction: column; gap: 2px; }
+    .source-item .left strong { font-size: 14px; font-weight: 600; }
+    .source-item .left span { font-size: 13px; color: var(--text-secondary); }
+    .source-item .arrow { color: var(--text-secondary); font-size: 14px; }
+
+    /* Footer */
+    .site-footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: var(--text-secondary);
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: var(--text-primary); }
+    @media (max-width:640px){ .footer-inner { flex-direction: column; gap: 12px; } }
+
+    /* Utility */
+    .mt-8 { margin-top: 32px; }
+    .mt-12 { margin-top: 48px; }
+    .mb-8 { margin-bottom: 32px; }
+    .gap-16 { gap: 16px; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo-link">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="hlogo" x1="0" y1="0" x2="32" y2="32">
+            <stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#06B6D4"/>
+          </linearGradient></defs>
+          <rect width="32" height="32" rx="8" fill="none"/>
+          <path d="M6 26L16 8L26 26H21L18 20H14L11 26H6ZM15 18H17L16 15.5L15 18Z" fill="url(#hlogo)"/>
+        </svg>
+        Ardot
+      </a>
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">AI-Powered Design Tool</div>
+      <h1>Ardot —&nbsp;AI-driven design tool for modern creatives</h1>
+      <p>From text to UI, image to editable design, to seamless developer handoff. Ardot brings every idea to life with AI collaboration at every step.</p>
+      <div class="hero-actions">
+        <a href="https://mirofish.my/" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Start Designing
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="https://mirofish.my/" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+          View Documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick info row -->
+  <section class="section" style="padding: 40px 0;">
+    <div class="container">
+      <div class="info-row">
+        <div class="info-item"><div class="value">AI</div><div class="label">Core Engine</div></div>
+        <div class="info-item"><div class="value">Text</div><div class="label">to UI</div></div>
+        <div class="info-item"><div class="value">Vector</div><div class="label">Editing</div></div>
+        <div class="info-item"><div class="value">Dev</div><div class="label">Handoff</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview / What makes Ardot different -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">What makes Ardot different from a normal design tool</h2>
+      <p class="section-subtitle" style="margin-bottom:48px;">
+        Ardot combines AI-native generation with professional-grade vector editing, dynamic layout, and a complete design-to-development pipeline.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon icon-indigo">AI</div>
+          <h3>Describe and generate — from text to UI</h3>
+          <p>Use natural language to describe your design needs. Ardot automatically generates layouts and components, turning ideas into draft structures in seconds.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-cyan">IM</div>
+          <h3>Turn images into editable designs instantly</h3>
+          <p>Upload any image and Ardot intelligently layers it into a fully editable design document — no manual tracing needed.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-purple">VE</div>
+          <h3>Professional vector editing built in</h3>
+          <p>From skew and 3D rotation to advanced shape tools (W3C standard), Ardot gives you everything you need for complex design effects.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-green">DS</div>
+          <h3>A design system that keeps teams aligned</h3>
+          <p>Components, colors, and text styles sync globally. Mix freely, reuse with one click, and let creativity and order happen together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deep dive / How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">The loop stays fast so every idea gets tested</h2>
+      <p class="section-subtitle" style="margin-bottom:48px;">
+        One prompt, one AI generation, one review cycle — the process stays narrow enough to inspect and strong enough to iterate.
+      </p>
+      <div class="split">
+        <div>
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-num">01</div>
+              <div>
+                <h3>Describe your vision</h3>
+                <p>Type a natural-language description of the interface or component you need. Ardot understands layout, style, and interaction intent.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">02</div>
+              <div>
+                <h3>AI generates the draft</h3>
+                <p>The engine assembles components, applies your design system rules, and produces a pixel-accurate draft you can edit immediately.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">03</div>
+              <div>
+                <h3>Refine with precision tools</h3>
+                <p>Grid layout, percentage positioning, real-proportion locking — adjust every detail so it renders perfectly on any screen size.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">04</div>
+              <div>
+                <h3>Export to development</h3>
+                <p>Inspect specs, copy CSS/iOS/Android code, and hand off with zero friction. Every measurement, style, and variant is ready for implementation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="split-right">
+          <div class="card" style="max-width:400px;width:100%;">
+            <div class="card-icon icon-indigo" style="margin-bottom:12px;">AI</div>
+            <h3 style="margin-bottom:16px;">AI Assistant — always on, always helpful</h3>
+            <p style="font-size:13px;margin-bottom:16px;">Smart rename, image generation, link-to-UI, AI search — the assistant collaborates on every design step so you never work alone.</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-top:1px solid var(--border);">
+                <span style="color:var(--text-secondary);">Smart Rename</span>
+                <span style="color:var(--text-primary);">AI-powered</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-top:1px solid var(--border);">
+                <span style="color:var(--text-secondary);">Image Generation</span>
+                <span style="color:var(--text-primary);">Built-in</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-top:1px solid var(--border);">
+                <span style="color:var(--text-secondary);">Link to UI</span>
+                <span style="color:var(--text-primary);">One click</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it matters -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Why It Matters</div>
+      <h2 class="section-title">It turns design iteration into something AI can accelerate.</h2>
+      <p class="section-subtitle" style="margin-bottom:48px;">
+        Most design tools automate execution. Ardot automates the full creative cycle — proposing ideas, generating drafts, refining layouts, and producing production-ready assets.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon icon-cyan">TX</div>
+          <h3>Text to interface</h3>
+          <p>Describe what you need and AI generates the UI structure. No more starting from a blank canvas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-purple">SC</div>
+          <h3>Smart constraints</h3>
+          <p>Grid layouts, real-proportion locking, and responsive rules ensure designs adapt to every screen without rework.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-green">DH</div>
+          <h3>Developer handoff</h3>
+          <p>Inspect specs, view all component variants, and copy production-ready CSS, iOS, and Android code directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Deep Dive -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">From layout to detail — full creative control</h2>
+      <p class="section-subtitle" style="margin-bottom:48px;">
+        Everything you need, from vector editing to enterprise security and team collaboration.
+      </p>
+
+      <div class="split" style="margin-bottom:48px;">
+        <div class="feature-highlight">
+          <h3>Vector Editing Capabilities</h3>
+          <p>From W3C-standard skew and 3D rotation to advanced shape tools, Ardot delivers professional vector editing that makes complex effects effortless.</p>
+        </div>
+        <div class="feature-highlight">
+          <h3>Dynamic Layout System</h3>
+          <p>Grid layout, percentage positioning, real-proportion locking — your designs render perfectly at every screen size without back-and-forth with developers.</p>
+        </div>
+      </div>
+
+      <div class="split" style="margin-bottom:48px;">
+        <div class="feature-highlight">
+          <h3>Intelligent Permission Center</h3>
+          <p>Admins assign fine-grained permissions so critical resources stay secure. Full audit trails track every action across the team.</p>
+        </div>
+        <div class="feature-highlight">
+          <h3>Seamless People &amp; Asset Management</h3>
+          <p>Permissions auto-revoke on departure, data handoffs are painless, and every asset change is logged for complete traceability.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="feature-highlight">
+          <h3>Inspect Design Specs Visually</h3>
+          <p>View dimensions, spacing, styles, and every detail at a glance. No detail gets lost from design to development.</p>
+        </div>
+        <div class="feature-highlight">
+          <h3>Copy Production-Ready Code</h3>
+          <p>CSS, iOS, and Android code for every component variant. Copy and paste directly — no manual conversion needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title" style="margin-bottom:32px;">The fastest answers to the questions people ask first</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">What is Ardot?</div>
+          <div class="faq-a">Ardot is an AI-powered design tool that turns text descriptions into UI layouts, converts images into editable designs, and streamlines the full design-to-development pipeline. Think of it as your AI copilot for interface design.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How does the text-to-UI feature work?</div>
+          <div class="faq-a">Simply type a natural-language description of the interface you have in mind. Ardot's AI engine interprets your intent, selects appropriate components, applies your design system tokens, and generates a fully editable layout in seconds.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I import designs from other tools?</div>
+          <div class="faq-a">Yes. You can upload images and Ardot will intelligently split them into editable layers. You can also import component libraries and design tokens to maintain consistency.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What platforms does Ardot support?</div>
+          <div class="faq-a">Ardot is available as a macOS desktop app and a web application. Both offer the same feature set including real-time collaboration, AI assistance, and version history.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is Ardot suitable for enterprise teams?</div>
+          <div class="faq-a">Absolutely. Ardot includes smart permission management, full audit trails, seamless offboarding, and enterprise-grade data security. It scales from individual designers to large product teams.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources / Primary Links -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Primary Sources</div>
+      <h2 class="section-title" style="margin-bottom:24px;">Learn more about Ardot</h2>
+      <div class="source-list">
+        <a href="https://mirofish.my/" class="source-item" target="_blank" rel="noopener noreferrer">
+          <div class="left">
+            <strong>Ardot Documentation</strong>
+            <span>The complete guide to features, API, and integration.</span>
+          </div>
+          <div class="arrow">&rarr;</div>
+        </a>
+        <a href="https://mirofish.my/" class="source-item" target="_blank" rel="noopener noreferrer">
+          <div class="left">
+            <strong>Download Ardot</strong>
+            <span>Get the macOS app or use the web version for free.</span>
+          </div>
+          <div class="arrow">&rarr;</div>
+        </a>
+        <a href="https://mirofish.my/" class="source-item" target="_blank" rel="noopener noreferrer">
+          <div class="left">
+            <strong>Community &amp; Support</strong>
+            <span>Join the conversation and get help from the team.</span>
+          </div>
+          <div class="arrow">&rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Ardot. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="https://mirofish.my/">Documentation</a>
+        <a href="https://mirofish.my/">Privacy Policy</a>
+        <a href="https://mirofish.my/">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach(q => {
+      const a = q.nextElementSibling;
+      a.style.display = 'none';
+      a.style.marginTop = '8px';
+      q.style.setProperty('--faq-rotate', '0deg');
+      q.addEventListener('click', () => {
+        const open = a.style.display === 'block';
+        a.style.display = open ? 'none' : 'block';
+        q.style.setProperty('--faq-rotate', open ? '0deg' : '45deg');
+      });
+    });
+  </script>
+</body>
+</html>
